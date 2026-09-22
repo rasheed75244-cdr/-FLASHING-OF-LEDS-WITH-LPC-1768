@@ -51,28 +51,31 @@ Delay.h, stdutils.h, gpioi.h
  
 # PROGRAM:
 
-#include <lpc17xx.h>
-#include "delay.h"       //User defined library which contains the delay routines
-#include "gpio.h"
+#include <lpc17xx.h> \
+#include "delay.h"       // User-defined library for delay routines \
+#include "gpio.h"        // User-defined GPIO library \
 
-#define LED P1_29        // Led is connected to P1.29
+#define LED P1_29        // LED is connected to P1.29 \
 
-/* start the main program */
+
 int main()
+
 {
-    SystemInit();                          //Clock and PLL configuration
-    GPIO_PinFunction(LED,PINSEL_FUNC_0);   // Configure Pin for Gpio
-    GPIO_PinDirection(LED,OUTPUT);         // Configure the pin as OUTPUT
-    GPIO_PinWrite(LED,LOW);
+    SystemInit();                          // Clock and PLL configuration
+
+    GPIO_PinFunction(LED, PINSEL_FUNC_0);  // Configure P1.29 as GPIO
+    GPIO_PinDirection(LED, OUTPUT);        // Configure P1.29 as OUTPUT
+    GPIO_PinWrite(LED, LOW);               // Initially turn OFF LED
 
     while(1)
     {
-        /* Turn On all the leds and wait for 100ms */
-        GPIO_PinWrite(LED,HIGH);           // Make all the Port pin as high
-        DELAY_ms(100);
+        // Turn ON LED
+        GPIO_PinWrite(LED, HIGH);
+        DELAY_ms(100);                     // Wait for 100 ms
 
-        GPIO_PinWrite(LED,LOW);            // Make all the Port pin as low
-        DELAY_ms(100);
+        // Turn OFF LED
+        GPIO_PinWrite(LED, LOW);
+        DELAY_ms(100);                     // Wait for 100 ms
     }
 }
  
